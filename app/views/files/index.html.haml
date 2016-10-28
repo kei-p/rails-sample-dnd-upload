@@ -1,0 +1,21 @@
+.container
+  .page-header
+    %h2 Files
+
+.container
+  #toggle-form
+    = text_area :test, :attr, id: 'input-form'
+    = form_tag files_path, class: 'dropzone', id: 'upload-dropzone' do |f|
+      .fallback
+        = file_field_tag 'upload[file]'
+
+  %table.table
+    %thead
+      %tr
+        %th Title
+        %th File
+    %tbody
+      - Upload.all.each do |file|
+        %tr
+          %td= file.title
+          %td= file.file
